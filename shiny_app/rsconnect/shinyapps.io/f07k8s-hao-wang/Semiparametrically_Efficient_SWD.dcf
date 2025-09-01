@@ -5,7 +5,7 @@ account: f07k8s-hao-wang
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 15320218
-bundleId: 10847881
+bundleId: 10848103
 url: https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Efficient_SWD/
 version: 1
 asMultiple: FALSE

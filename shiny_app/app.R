@@ -333,6 +333,8 @@ ui <- fluidPage(
                               selected = "gate",
                               inline = FALSE),
                  
+                 helpText("Note: When ℓ = 0, all estimands are equivalent as treatment effect is constant."),
+                 
                  numericInput("J", 
                               label = HTML("Number of periods \\(J\\):"), 
                               value = 12, min = 3, max = 30, step = 1),
@@ -340,8 +342,6 @@ ui <- fluidPage(
                  numericInput("ell", 
                               label = HTML("Maximum duration of carryover effects \\(\\ell\\):"), 
                               value = 0, min = 0, max = 10, step = 1),
-                 
-                 helpText("Note: When ℓ = 0, all estimands are equivalent as treatment effect is constant."),
                  
                  sliderInput("r", 
                              label = HTML("Serial correlation \\(r\\):"), 
