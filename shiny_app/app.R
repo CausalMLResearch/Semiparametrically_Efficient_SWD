@@ -1,12 +1,7 @@
-# app.R
-# shiny application for semiparametrically efficient stepped wedge designs
-
 library(shiny)
 library(ggplot2)
 library(nloptr)
 
-# source optimization functions
-# optimization_utils.R
 # utility functions for stepped wedge design optimization
 
 # ============================================================================
@@ -327,14 +322,6 @@ ui <- fluidPage(
              
              sidebarLayout(
                sidebarPanel(
-                 numericInput("J", 
-                              label = HTML("Number of periods \\(J\\):"), 
-                              value = 12, min = 3, max = 30, step = 1),
-                 
-                 numericInput("ell", 
-                              label = HTML("Maximum duration of carryover effects \\(\\ell\\):"), 
-                              value = 0, min = 0, max = 10, step = 1),
-                 
                  radioButtons("estimand", 
                               label = "Target estimand:",
                               choiceNames = list(
@@ -345,6 +332,14 @@ ui <- fluidPage(
                               choiceValues = list("gate", "cte", "both"),
                               selected = "gate",
                               inline = FALSE),
+                 
+                 numericInput("J", 
+                              label = HTML("Number of periods \\(J\\):"), 
+                              value = 12, min = 3, max = 30, step = 1),
+                 
+                 numericInput("ell", 
+                              label = HTML("Maximum duration of carryover effects \\(\\ell\\):"), 
+                              value = 0, min = 0, max = 10, step = 1),
                  
                  helpText("Note: When ℓ = 0, all estimands are equivalent as treatment effect is constant."),
                  
@@ -401,14 +396,6 @@ ui <- fluidPage(
                         
                         sidebarLayout(
                           sidebarPanel(
-                            numericInput("J_crt", 
-                                         label = HTML("Number of periods \\(J\\):"), 
-                                         value = 12, min = 3, max = 30, step = 1),
-                            
-                            numericInput("ell_crt", 
-                                         label = HTML("Maximum duration of carryover effects \\(\\ell\\):"), 
-                                         value = 0, min = 0, max = 10, step = 1),
-                            
                             radioButtons("estimand_crt", 
                                          label = "Target estimand:",
                                          choiceNames = list(
@@ -417,6 +404,14 @@ ui <- fluidPage(
                                          choiceValues = list("gate"),
                                          selected = "gate",
                                          inline = FALSE),
+                            
+                            numericInput("J_crt", 
+                                         label = HTML("Number of periods \\(J\\):"), 
+                                         value = 12, min = 3, max = 30, step = 1),
+                            
+                            numericInput("ell_crt", 
+                                         label = HTML("Maximum duration of carryover effects \\(\\ell\\):"), 
+                                         value = 0, min = 0, max = 10, step = 1),
                             
                             sliderInput("r_crt", 
                                         label = HTML("Serial correlation \\(r\\):"), 
@@ -480,14 +475,6 @@ ui <- fluidPage(
                         
                         sidebarLayout(
                           sidebarPanel(
-                            numericInput("J_crt_cc", 
-                                         label = HTML("Number of periods \\(J\\):"), 
-                                         value = 12, min = 3, max = 30, step = 1),
-                            
-                            numericInput("ell_crt_cc", 
-                                         label = HTML("Maximum duration of carryover effects \\(\\ell\\):"), 
-                                         value = 0, min = 0, max = 10, step = 1),
-                            
                             radioButtons("estimand_crt_cc", 
                                          label = "Target estimand:",
                                          choiceNames = list(
@@ -496,6 +483,14 @@ ui <- fluidPage(
                                          choiceValues = list("gate"),
                                          selected = "gate",
                                          inline = FALSE),
+                            
+                            numericInput("J_crt_cc", 
+                                         label = HTML("Number of periods \\(J\\):"), 
+                                         value = 12, min = 3, max = 30, step = 1),
+                            
+                            numericInput("ell_crt_cc", 
+                                         label = HTML("Maximum duration of carryover effects \\(\\ell\\):"), 
+                                         value = 0, min = 0, max = 10, step = 1),
                             
                             sliderInput("r_crt_cc", 
                                         label = HTML("Serial correlation \\(r\\):"), 
