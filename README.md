@@ -3,7 +3,7 @@ This repository contains the R code to reproduce the results presented in [Semip
 
 ### Quickstart
 
-To reproduce the results, please download this repo on a machine with R, run each of R script in the [`codes`](codes) without modification, and then the results are saved in [`figures`](figures), [`results`](results), and [`tables`](tables). All the R scripts can be run standalone. To run the R scripts, you do not need to set any pathnames; everything is relative. Only standard libraries (TBD) are required in the R scripts.
+To reproduce the results, please download this repo on a machine with R, run each of R script in the [`codes`](codes) without modification, and then the results are saved in [`figures`](figures), [`results`](results), and [`tables`](tables). All the R scripts can be run standalone. To run the R scripts, you do not need to set any pathnames; everything is relative. Only standard libraries (doRNG, doSNOW, dplyr, foreach, ggpattern, ggplot2, glmmTMB, lme4, MASS, nloptr, parallel, patchwork, RColorBrewer, RSSthemes, tidyverse, xtable) are required in the R scripts.
 
 ### A Shiny App
 
