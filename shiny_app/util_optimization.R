@@ -3,6 +3,8 @@
 
 library(nloptr)
 
+setwd("CausalMLResearch/Semiparametrically_Efficient_SWD/shiny_app")
+
 # ============================================================================
 # individually randomized trial (IRT) optimization functions
 # ============================================================================
