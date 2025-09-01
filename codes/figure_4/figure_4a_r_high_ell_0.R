@@ -78,7 +78,6 @@ theme_paper <- theme_bw(base_family = "serif") +
     legend.position = "none"
   )
 
-# create mse plot with standard error bars and patterns
 p_mse <- ggplot(stats, aes(x = factor(x), y = mse)) +
   geom_bar_pattern(
     aes(pattern = pattern, fill = fill_color),
