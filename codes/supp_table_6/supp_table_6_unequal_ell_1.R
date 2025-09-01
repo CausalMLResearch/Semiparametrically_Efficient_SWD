@@ -15,31 +15,27 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 set.seed(seed)
 print(paste("Running simulation", sim_id, "with seed", seed))
 
-# simulation parameters
+# set up
 base_params <- list(
   I = 32,
   J = 10,
-  K = c(50, 100),  # cluster sizes
-  delta_small = c(0, 1, 2),  # treatment effect for small clusters
-  delta_large = c(0, 2, 4),  # treatment effect for large clusters
+  K = c(50, 100),
+  delta_small = c(0, 1, 2),
+  delta_large = c(0, 2, 4),
   max_exposure_time = 2,
   sigma_gamma = 1,
   sigma_epsilon = 1,
   r = 0.9,
-  omega_type = "cluster"  # cluster-level weighting
+  omega_type = "cluster"
 )
 
-# design types
 design_types <- c("t-opt", "ba", "ff", "ffba", "efficient")
 
-# efficient design matrix
 efficient_matrix <- c(0.3019901, 0.3019901, 0.3525803, 0.4159568, 0.4726380, 
                       0.5273620, 0.5840432, 0.6474198, 0.6980098, 0.6980098)
 
-# true effect under cluster weighting
 true_effect <- (base_params$delta_small[3] + base_params$delta_large[3]) / 2
 
-# run simulation for all designs
 seed_results <- list()
 seed_results$designs <- list()
 
@@ -51,7 +47,6 @@ for (design in design_types) {
   design_results$design_type <- design
   
   tryCatch({
-    # generate data
     df <- simulate_panel_data(
       I = base_params$I,
       J = base_params$J,
@@ -68,7 +63,6 @@ for (design in design_types) {
       seed = seed
     )
     
-    # run AIPW estimator only
     aipw_result <- aipw_gate(df)
     design_results$aipw <- list(
       estimate = aipw_result$estimate,
@@ -78,7 +72,6 @@ for (design in design_types) {
       aug_control = aipw_result$aug_control
     )
     
-    # create summary
     design_results$summary <- data.frame(
       design = design,
       method = "aipw",
@@ -102,7 +95,6 @@ for (design in design_types) {
   gc(verbose = FALSE)
 }
 
-# combine summaries across designs
 seed_results$combined_summary <- do.call(rbind, lapply(design_types, function(d) {
   if (!is.null(seed_results$designs[[d]]$summary)) {
     seed_results$designs[[d]]$summary
@@ -112,7 +104,6 @@ seed_results$combined_summary <- do.call(rbind, lapply(design_types, function(d)
 seed_results$simulation_id <- sim_id
 seed_results$seed <- seed
 
-# save results
 filename <- file.path(output_dir, sprintf("sim_results_seed_%04d.rds", seed))
 saveRDS(seed_results, file = filename)
 
