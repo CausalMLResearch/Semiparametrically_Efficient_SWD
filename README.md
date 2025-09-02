@@ -120,15 +120,23 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 ### Application to the Mobile Health Study
 
+#### Correlation Parameters Estimation
+
+- Run [`patient_para_16.R`](codes/supp_figure_2/patient_para_16.R), [`caregiver_para_16.R`](codes/supp_figure_2/caregiver_para_16.R) and then run [`supp_figure_2.R`](codes/supp_figure_2/supp_figure_2.R)
+  - estimated correlation parameter in the model health study when $I = 30$ and $H_{\text{hist}} = 16$
+  - generate [`mobile_parameters.pdf`](figures/supp_figure_2/mobile_parameters.pdf)
+
+##### Patient Cohort or Caregiver Cohort
+
 - Run [`caregiver_ell_0_8_sim.R`](codes/figure_5/caregiver_ell_0_8_sim.R), [`caregiver_ell_0_10_sim.R`](codes/figure_5/caregiver_ell_0_10_sim.R), [`caregiver_ell_0_12_sim.R`](codes/figure_5/caregiver_ell_0_12_sim.R), [`caregiver_ell_0_14_sim.R`](codes/figure_5/caregiver_ell_0_14_sim.R), [`caregiver_ell_0_16_sim.R`](codes/figure_5/caregiver_ell_0_16_sim.R), [`caregiver_ell_1_8_sim.R`](codes/figure_5/caregiver_ell_1_8_sim.R), [`caregiver_ell_1_10_sim.R`](codes/figure_5/caregiver_ell_1_10_sim.R), [`caregiver_ell_1_12_sim.R`](codes/figure_5/caregiver_ell_1_12_sim.R), [`caregiver_ell_1_14_sim.R`](codes/figure_5/caregiver_ell_1_14_sim.R), [`caregiver_ell_1_16_sim.R`](codes/figure_5/caregiver_ell_1_16_sim.R), and then run [`figure_5.R`](codes/figure_5/figure_5.R)
-  - performance of AIPW under different designs when $I = 40$, $J = 8, 10, 12, 14, 16$, $\ell = 0, 1$ in the mobile health study
-  - generate [`vary_J.pdf`](figures/figure_4/vary_J.pdf)
-
-#### Patient Cohort
-
-#### Caregiver Cohort
+  - performance of AIPW under different designs when $I = 40$, $J = 8, 10, 12, 14, 16$, $\ell = 0, 1$ for patient cohort and caregiver cohort in the mobile health study
+  - generate [`mobile.pdf`](figures/figure_5/mobile.pdf)
 
 #### A Dyad of Patient and Caregiver
+
+- Run [`cluster_ell_0_8_sim.R`](codes/figure_5/cluster_ell_0_8_sim.R), [`cluster_ell_0_10_sim.R`](codes/figure_5/cluster_ell_0_10_sim.R), [`cluster_ell_0_12_sim.R`](codes/figure_5/cluster_ell_0_12_sim.R), [`cluster_ell_0_14_sim.R`](codes/figure_5/cluster_ell_0_14_sim.R), [`cluster_ell_0_16_sim.R`](codes/figure_5/cluster_ell_0_16_sim.R) and then run [`supp_figure_3.R`](codes/supp_figure_3/supp_figure_3.R)
+  - performance of AIPW under different designs when $I = 40$, $J = 8, 10, 12, 14, 16$, $\ell = 0, 1$ for dyads of patient cohort and caregiver cohort in the mobile health study
+  - generate [`mobile_cluster.pdf`](figures/supp_figure_3/mobile_cluster.pdf)
 
 ### Helper Functions
 The following scripts in [`codes`](codes) contain helper functions used throughout the analysis. These are automatically sourced by the main scripts - you don't need to run them separately:
