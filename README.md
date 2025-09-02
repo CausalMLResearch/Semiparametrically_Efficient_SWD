@@ -19,7 +19,7 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 ### Generate Illustrative Figures
 
-- Run [`figure_1_sim.R`](codes/figure_1_sim.R) and then run [`figure_1_sim.R`](codes/figure_1.py)
+- Run [`figure_1_sim.R`](codes/figure_1/figure_1_sim.R) and then run [`figure_1.py`](codes/figure_1/figure_1.py)
   - run a simulation for a simple two-period stepped wedge trial and compares two estimators: difference-in-means and AIPW
   - generate [`Figure 1`](figures/figure_1/2_period_mse.pdf)
 
