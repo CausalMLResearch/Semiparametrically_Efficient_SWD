@@ -37,25 +37,25 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 #### Impact of Serial Correlations in Outcomes
 
 - Run [`figure_2a_J2.R`](codes/figure_2/figure_2a_J2.R), [`figure_2a_J4.R`](codes/figure_2/figure_2a_J4.R), and [`figure_2a_J10.R`](codes/figure_2/figure_2a_J10.R)
-  - optimize $\tau_0$ when $J \in \{2, 4, 10\}$, $r \in [0, 1]$, $\ell = 0$, and $\sigma_\upsilon^2 = 0$.
+  - optimal designs for $\tau_0$ when $J \in \{2, 4, 10\}$, $r \in [0, 1]$, $\ell = 0$, and $\sigma_\upsilon^2 = 0$.
   - generate [`J_2`](figures/figure_2/J_2.pdf), [`J_4`](figures/figure_2/J_4.pdf), and [`treated_fraction_r.pdf`](figures/figure_2/treated_fraction_r.pdf)
 
 #### Impact of Maximum Duration of Carryover Effects
 
 - Run [`figure_2b.R`](codes/figure_2/figure_2b.R)
-  - optimize $\tau_0$ for $\ell = 0$ and $\tau^{\text{GATE}}$ for $\ell \in \{1, 2, 3\}$ when $J = 10$, $r = 0.9$, and $\sigma_\upsilon^2 = 0$
+  - optimal designs for $\tau_0$ for $\ell = 0$ and $\tau^{\text{GATE}}$ for $\ell \in \{1, 2, 3\}$ when $J = 10$, $r = 0.9$, and $\sigma_\upsilon^2 = 0$
   - generate [`treated_fraction_ell.pdf`](figures/figure_2/treated_fraction_ell.pdf)
 
 #### Impact of Treatment vs. Control Outcome Variance
 
 - Run [`figure_2c.R`](codes/figure_2/figure_2c.R)
-  - optimize $\tau^{\text{GATE}}$ when $J = 10$, $r = 0.9$, $\ell = 0$, and $\sigma_\upsilon^2/\sigma_\gamma^2 \in \{0, 1, 2\}$
+  - optimal designs for $\tau^{\text{GATE}}$ when $J = 10$, $r = 0.9$, $\ell = 0$, and $\sigma_\upsilon^2/\sigma_\gamma^2 \in \{0, 1, 2\}$
   - generate [`treated_fraction_upsilon.pdf`](figures/figure_2/treated_fraction_upsilon.pdf)
 
 #### Impact of Target Causal Estimand
 
 - Run [`figure_2c_J2.R`](codes/figure_2/figure_2c_J2.R) and [`figure_2c_J10.R`](codes/figure_2/figure_2c_J10.R)
-  - optimal designs for $\tau^{\text{GATE}}$, $\tau_0^{\text{CTE}}$, and both when $J \in \{2, 10\}$, $\ell = 1$, and $\sigma_\upsilon^2 = 0$
+  - optimal designs for $\tau^{\text{GATE}}$, $\tau_0^{\text{CTE}}$, and both when $J = 2, 10$, $\ell = 1$, and $\sigma_\upsilon^2 = 0$
   - generate [`multiple_estimands.pdf`](figures/figure_2/multiple_estimands.pdf) and [`treated_fraction_vary_estimand.pdf`](figures/figure_2/treated_fraction_vary_estimand.pdf)
  
 ### Simulation Study
