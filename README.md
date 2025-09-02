@@ -98,6 +98,10 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 #### Varying Experimental Durations
 
+- Run [`figure_4b_r_high_8_sim.R`](codes/figure_4/figure_4b_r_high_8_sim.R.R), [`figure_4b_r_high_10_sim.R`](codes/figure_4/figure_4b_r_high_10_sim.R.R), [`figure_4b_r_high_12_sim.R`](codes/figure_4/figure_4b_r_high_12_sim.R.R), [`figure_4b_r_high_14_sim.R`](codes/figure_4/figure_4b_r_high_14_sim.R.R), [`figure_4b_r_high_16_sim.R`](codes/figure_4/figure_4b_r_high_16_sim.R.R), and then run [`figure_4c.R`](codes/figure_4/figure_4c.R)
+  - performance of AIPW under different designs when $I = 32$, $J = 8, 10, 12, 14, 16$, $r = 0.9$, $\ell = 0$, $\tau_0 = 2$
+  - generate [`vary_J.pdf`](figures/figure_4/vary_J.pdf)
+
 #### Impact of Target Causal Estimands
 
 ### Application to the Mobile Health Study
