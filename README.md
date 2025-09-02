@@ -36,9 +36,8 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 #### Impact of Serial Correlations in Outcomes
 
-- Run [`figure_1_sim.R`](codes/figure_1/figure_1_sim.R) and then run [`figure_1.py`](codes/figure_1/figure_1.py)
-  - run a simulation for a simple two-period stepped wedge trial and compares two estimators: difference-in-means and AIPW
-  - generate [`Figure 1`](figures/figure_1/2_period_mse.pdf)
+- Run [`figure_2a_J2.R`](codes/figure_2/figure_2a_J2.R), [`figure_2a_J4.R`](codes/figure_2/figure_2a_J4.R), and [`figure_2a_J10.R`](codes/figure_2/figure_2a_J10.R)
+  - generate [`J_2`](figures/figure_2/J_2.pdf), [`J_4`](figures/figure_2/J_4.pdf), and [`J_10`](figures/figure_2/J_10.pdf)
 
 #### Impact of Maximum Duration of Carryover Effects
 
