@@ -25,6 +25,14 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 ### Simulation Study
 
+#### Impact of Serial Correlations in Outcomes
+
+#### Impact of Maximum Duration of Carryover Effects
+
+#### Impact of Treatment vs. Control Outcome Variance
+
+#### Impact of Target Causal Estimand
+
 ### Application to the Mobile Health Study
 
 ### Helper Functions
