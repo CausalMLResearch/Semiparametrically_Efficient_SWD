@@ -37,9 +37,12 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 #### Impact of Serial Correlations in Outcomes
 
 - Run [`figure_2a_J2.R`](codes/figure_2/figure_2a_J2.R), [`figure_2a_J4.R`](codes/figure_2/figure_2a_J4.R), and [`figure_2a_J10.R`](codes/figure_2/figure_2a_J10.R)
-  - generate [`J_2`](figures/figure_2/J_2.pdf), [`J_4`](figures/figure_2/J_4.pdf), and [`J_10`](figures/figure_2/treated_fraction_r.pdf)
+  - generate [`J_2`](figures/figure_2/J_2.pdf), [`J_4`](figures/figure_2/J_4.pdf), and [`treated_fraction_r.pdf`](figures/figure_2/treated_fraction_r.pdf)
 
 #### Impact of Maximum Duration of Carryover Effects
+
+- Run [`figure_2a_J2.R`](codes/figure_2/figure_2b.R)
+  - generate [`treated_fraction_ell.pdf`](figures/figure_2/treated_fraction_ell.pdf)
 
 #### Impact of Treatment vs. Control Outcome Variance
 
