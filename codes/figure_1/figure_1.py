@@ -15,7 +15,7 @@ mpl.rcParams.update({
 })
 
 # read simulation results
-df = pd.read_csv('simulation_results_20250828_045609.csv')
+df = pd.read_csv('../../results/figure_1/simulation_results_20250828_045609.csv')
 global_min = min(df['mse_aipw1'].min(), df['mse_or'].min())
 global_max = max(df['mse_aipw1'].max(), df['mse_or'].max())
 
