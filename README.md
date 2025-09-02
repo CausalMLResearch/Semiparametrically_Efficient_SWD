@@ -74,9 +74,17 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 #### Varying Maximum Duration of Carryover Effects
 
-- Run [`figure_4a_r_high_ell_1_sim`](codes/figure_4/figure_4a_r_high_ell_0_sim.R) and then run [`figure_4a_r_high_ell_0.R`](codes/figure_4/figure_4a_r_high_ell_0.R)
+- Run [`figure_4a_r_high_ell_0_sim`](codes/figure_4/figure_4a_r_high_ell_0_sim.R) and then run [`figure_4a_r_high_ell_0.R`](codes/figure_4/figure_4a_r_high_ell_0.R)
   - performance of AIPW under different designs when $I = 32$, $J = 10$, $\ell = 0$, $\tau_0 = 2$
   - generate [`vary_ell_0.pdf`](figures/figure_4/vary_ell_0.pdf)
+ 
+- Run [`figure_4a_r_high_ell_1_sim`](codes/figure_4/figure_4a_r_high_ell_1_sim.R) and then run [`figure_4a_r_high_ell_1.R`](codes/figure_4/figure_4a_r_high_ell_1.R)
+  - performance of AIPW under different designs when $I = 32$, $J = 10$, $\ell = 1$, $\tau_0^{\text{CTE} = 1$, $\tau^{\text{GATE} = 2$
+  - generate [`vary_ell_1.pdf`](figures/figure_4/vary_ell_1.pdf)
+ 
+- Run [`figure_4a_r_high_ell_2_sim`](codes/figure_4/figure_4a_r_high_ell_2_sim.R) and then run [`figure_4a_r_high_ell_2.R`](codes/figure_4/figure_4a_r_high_ell_2.R)
+  - performance of AIPW under different designs when $I = 32$, $J = 10$, $\ell = 2$, $\tau_0^{\text{CTE} = 0.5$, $\tau_0^{\text{CTE} = 1$, $\tau^{\text{GATE} = 2$
+  - generate [`vary_ell_2.pdf`](figures/figure_4/vary_ell_2.pdf)
 
 #### Varying Serial Correlations
 
