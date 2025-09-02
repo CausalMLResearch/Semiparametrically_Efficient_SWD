@@ -6,19 +6,22 @@
 This repository contains the R code to reproduce the results presented in [Semiparametrically Efficient Stepped Wedge Designs](TBD).
 
 ### Quickstart
+To reproduce the results, please download this repo on a machine with R, run each R script in the [`codes`](codes) directory without modification, and then the results are saved in [`figures`](figures), [`results`](results), and [`tables`](tables). All the R scripts can be run standalone. To run the R scripts, you do not need to set any pathnames; everything is relative. 
 
-To reproduce the results, please download this repo on a machine with R, run each of R script in the [`codes`](codes) without modification, and then the results are saved in [`figures`](figures), [`results`](results), and [`tables`](tables). All the R scripts can be run standalone. To run the R scripts, you do not need to set any pathnames; everything is relative. Only standard libraries (doRNG, doSNOW, dplyr, foreach, ggpattern, ggplot2, glmmTMB, lme4, MASS, nloptr, parallel, patchwork, RColorBrewer, RSSthemes, tidyverse, xtable) are required in the R scripts.
+Required R packages: doRNG, doSNOW, dplyr, foreach, ggpattern, ggplot2, glmmTMB, lme4, MASS, nloptr, parallel, patchwork, RColorBrewer, RSSthemes, tidyverse, xtable.
 
-### A Shiny App
-
-https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Efficient_SWD/
+### Solve Optimal Design
+Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Efficient_SWD/) to find optimal stepped wedge designs:
+- Choose trial type: individually randomized trial or cluster randomized trial (cross-sectional or closed-cohort)
+- Select target estimand(s) for optimization
+- Specify trial settings: number of clusters and periods, maximum duration of carryover effects, correlation parameters, etc.
+- Click "Run optimization" and download your optimal design
 
 ### Generate Illustrative Figures
 
 ### Simulation Study
- 
+
 ### Application to the Mobile Health Study
 
-### Helper Functions Are Collected in [`codes`](codes) 
-
-The following scripts collect all the helper functions used in this repository. You do not need to separately run any of the scripts to replicate the results in the paper. 
+### Helper Functions
+The following scripts in [`codes`](codes) contain helper functions used throughout the analysis. These are automatically sourced by the main scripts - you don't need to run them separately:
