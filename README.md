@@ -41,12 +41,20 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 #### Impact of Maximum Duration of Carryover Effects
 
-- Run [`figure_2a_J2.R`](codes/figure_2/figure_2b.R)
+- Run [`figure_2b.R`](codes/figure_2/figure_2b.R)
   - generate [`treated_fraction_ell.pdf`](figures/figure_2/treated_fraction_ell.pdf)
 
 #### Impact of Treatment vs. Control Outcome Variance
 
+- Run [`figure_2c.R`](codes/figure_2/figure_2c.R)
+  - generate [`treated_fraction_upsilon.pdf`](figures/figure_2/treated_fraction_upsilon.pdf)
+
 #### Impact of Target Causal Estimand
+
+- Run [`figure_2c_J2.R`](codes/figure_2/figure_2c_J2.R) and [`figure_2c_J10.R`](codes/figure_2/figure_2c_J10.R)
+  - generate [`multiple_estimands.pdf`](figures/figure_2/multiple_estimands.pdf) and [`treated_fraction_vary_estimand.pdf`](figures/figure_2/treated_fraction_vary_estimand.pdf)
+ 
+### Simulation Study
 
 ### Application to the Mobile Health Study
 
