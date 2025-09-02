@@ -91,6 +91,10 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 - Run [`figure_4b_r_high_10_sim.R`](codes/figure_4/figure_4b_r_high_10_sim.R.R) and then run [`figure_4b_r_high_10.R`](codes/figure_4/figure_4b_r_high_10.R)
   - performance of AIPW under different designs when $I = 32$, $J = 10$, $r = 0.9$, $\ell = 0$, $\tau_0 = 2$
   - generate [`vary_r_0.9.pdf`](figures/figure_4/vary_r_0.9.pdf)
+ 
+- Run [`figure_4b_r_med_10_sim.R`](codes/figure_4/figure_4b_r_med_10_sim.R) and then run [`figure_4b_r_med_10.R`](codes/figure_4/figure_4b_r_med_10.R)
+  - performance of AIPW under different designs when $I = 32$, $J = 10$, $r = 0.5$, $\ell = 0$, $\tau_0 = 2$
+  - generate [`vary_r_0.5.pdf`](figures/figure_4/vary_r_0.5.pdf)
 
 #### Varying Experimental Durations
 
