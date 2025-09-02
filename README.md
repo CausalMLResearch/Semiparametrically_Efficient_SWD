@@ -14,11 +14,12 @@ Required R packages: doRNG, doSNOW, dplyr, foreach, ggpattern, ggplot2, glmmTMB,
 Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Efficient_SWD/) to find optimal stepped wedge designs:
 - **Choose trial type:** Individually randomized trial or cluster randomized trial (cross-sectional or closed-cohort)
 - **Select target estimand(s):**
-  - $\tau^{\text{GATE}}$ - Grand average treatment effect
-  - $\tau_s^{\text{CTE}}$ for $s = 0, ..., \ell-1$ - Current treatment effects  
+  - $\tau^{\text{GATE}}$ - Global average treatment effect
+  - $\tau_s^{\text{CTE}}$ for $s = 0, ..., \ell-1$ - Cumulative treatment effect  
   - Both $\tau^{\text{GATE}}$ and $\tau_s^{\text{CTE}}$ for $s = 0, ..., \ell-1$
 - **Specify trial settings:** Number of clusters and periods, maximum duration of carryover effects ($\ell$), correlation parameters, etc.
 - **Run optimization:** Click "Run optimization" and download your optimal design
+
 ### Generate Illustrative Figures
 
 - Run [`figure_1_sim.R`](codes/figure_1/figure_1_sim.R) and then run [`figure_1.py`](codes/figure_1/figure_1.py)
