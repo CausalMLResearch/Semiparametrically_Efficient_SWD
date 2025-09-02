@@ -107,6 +107,12 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 - Run [`figure_4d_sim.R`](codes/figure_4/figure_4d_sim.R) and then run [`figure_4d.R`](codes/figure_4/figure_4d.R)
   - performance of AIPW under different designs when $I = 32$, $J = 10$, $r = 0.9$, $\ell = 1$, $\tau_0^{\text{CTE}} = 1$, $\tau^{\text{GATE}} = 2$
   - generate [`multiple_cte.pdf`](figures/figure_4/multiple_cte.pdf), [`multiple_gate.pdf`](figures/figure_4/multiple_gate.pdf), and [`multiple_both.pdf`](figures/figure_4/multiple_both.pdf)
+ 
+#### Supplementary Materials
+
+- Run scripts in [`supp_figure_1`](codes/supp_figure_1) to replicate all the simulations above by replacing $I = 32$ with $I = 1000$ for evaluating asymptotic performance 
+ 
+#### Extension to Cluster Randomized Trials
 
 ### Application to the Mobile Health Study
 
