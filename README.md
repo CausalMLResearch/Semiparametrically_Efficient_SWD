@@ -134,7 +134,7 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 #### A Dyad of Patient and Caregiver
 
-- Run [`cluster_ell_0_8_sim.R`](codes/figure_5/cluster_ell_0_8_sim.R), [`cluster_ell_0_10_sim.R`](codes/figure_5/cluster_ell_0_10_sim.R), [`cluster_ell_0_12_sim.R`](codes/figure_5/cluster_ell_0_12_sim.R), [`cluster_ell_0_14_sim.R`](codes/figure_5/cluster_ell_0_14_sim.R), [`cluster_ell_0_16_sim.R`](codes/figure_5/cluster_ell_0_16_sim.R) and then run [`supp_figure_3.R`](codes/supp_figure_3/supp_figure_3.R)
+- Run [`cluster_ell_0_8_sim.R`](codes/supp_figure_3/cluster_ell_0_8_sim.R), [`cluster_ell_0_10_sim.R`](codes/supp_figure_3/cluster_ell_0_10_sim.R), [`cluster_ell_0_12_sim.R`](codes/supp_figure_3/cluster_ell_0_12_sim.R), [`cluster_ell_0_14_sim.R`](codes/supp_figure_3/cluster_ell_0_14_sim.R), [`cluster_ell_0_16_sim.R`](codes/supp_figure_3/cluster_ell_0_16_sim.R) and then run [`supp_figure_3.R`](codes/supp_figure_3/supp_figure_3.R)
   - performance of AIPW under different designs when $I = 40$, $J = 8, 10, 12, 14, 16$, $\ell = 0, 1$ for dyads of patient cohort and caregiver cohort in the mobile health study
   - generate [`mobile_cluster.pdf`](figures/supp_figure_3/mobile_cluster.pdf)
 
