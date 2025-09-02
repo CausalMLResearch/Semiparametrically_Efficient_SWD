@@ -72,7 +72,21 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
   - performance of AIPW, IPW, and OR under different designs when $I = 32$, $J = 10$, $\ell = 1$, $\tau_0^{\text{CTE}} = 1$ and $\tau^{\text{GATE}} = 2$
   - generate [`table_1.tex`](tables/table_1.tex)
 
+#### Varying Maximum Duration of Carryover Effects
+
+#### Varying Serial Correlations
+
+#### Varying Experimental Durations
+
+#### Impact of Target Causal Estimands
+
 ### Application to the Mobile Health Study
+
+#### Patient Cohort
+
+#### Caregiver Cohort
+
+#### A Dyad of Patient and Caregiver
 
 ### Helper Functions
 The following scripts in [`codes`](codes) contain helper functions used throughout the analysis. These are automatically sourced by the main scripts - you don't need to run them separately:
