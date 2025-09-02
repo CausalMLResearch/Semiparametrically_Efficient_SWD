@@ -110,9 +110,13 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
  
 #### Supplementary Materials
 
-- Run scripts in [`supp_figure_1`](codes/supp_figure_1) to replicate all the simulations above by replacing $I = 32$ with $I = 1000$ for evaluating asymptotic performance 
+- Run scripts in [`supp_figure_1`](codes/supp_figure_1) to replicate all the simulations above by replacing $I = 32$ with $I = 1000$
  
 #### Extension to Cluster Randomized Trials
+
+- Run [`supp_table_6_unequal_ell_0.R`](codes/supp_table_6/supp_table_6_unequal_ell_0.R) and [`supp_table_6_unequal_ell_1.R`](codes/supp_table_6/supp_table_6_unequal_ell_1.R) and then run [`generate_supp_tables.R`](codes/supp_figure_1/generate_supp_tables.R)
+  - performance of AIPW under different designs for SW-CRTs with unequal cluster sizes
+  - generate [`supp_table_6_ell_0.tex`](tables/supp_table_6_ell_0.tex) and [`supp_table_6_ell_1.tex`](tables/supp_table_6_ell_1.tex)
 
 ### Application to the Mobile Health Study
 
