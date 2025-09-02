@@ -57,6 +57,12 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 - Run [`figure_2c_J2.R`](codes/figure_2/figure_2c_J2.R) and [`figure_2c_J10.R`](codes/figure_2/figure_2c_J10.R)
   - optimal designs for $\tau^{\text{GATE}}$, $\tau_0^{\text{CTE}}$, and both when $J = 2, 10$, $\ell = 1$, and $\sigma_\upsilon^2 = 0$
   - generate [`multiple_estimands.pdf`](figures/figure_2/multiple_estimands.pdf) and [`treated_fraction_vary_estimand.pdf`](figures/figure_2/treated_fraction_vary_estimand.pdf)
+
+#### Different Designs
+
+- Run [`figure_3.R`](codes/figure_3/figure_3.R)
+  - benchmark designs and the efficient design
+  - generate [`designs.pdf`](figures/figure_3/designs.pdf)
  
 ### Simulation Study
 
