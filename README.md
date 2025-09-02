@@ -112,13 +112,17 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 - Run scripts in [`supp_figure_1`](codes/supp_figure_1) to replicate all the simulations above by replacing $I = 32$ with $I = 1000$
  
-#### Extension to Cluster Randomized Trials
+### Extension to Cluster Randomized Trials
 
-- Run [`supp_table_6_unequal_ell_0.R`](codes/supp_table_6/supp_table_6_unequal_ell_0.R) and [`supp_table_6_unequal_ell_1.R`](codes/supp_table_6/supp_table_6_unequal_ell_1.R) and then run [`generate_supp_tables.R`](codes/supp_figure_1/generate_supp_tables.R)
+- Run [`supp_table_6_unequal_ell_0.R`](codes/supp_table_6/supp_table_6_unequal_ell_0.R), [`supp_table_6_unequal_ell_1.R`](codes/supp_table_6/supp_table_6_unequal_ell_1.R) and then run [`generate_supp_tables.R`](codes/supp_figure_1/generate_supp_tables.R)
   - performance of AIPW under different designs for SW-CRTs with unequal cluster sizes
   - generate [`supp_table_6_ell_0.tex`](tables/supp_table_6_ell_0.tex) and [`supp_table_6_ell_1.tex`](tables/supp_table_6_ell_1.tex)
 
 ### Application to the Mobile Health Study
+
+- Run [`caregiver_ell_0_8_sim.R`](codes/figure_5/caregiver_ell_0_8_sim.R), [`caregiver_ell_0_10_sim.R`](codes/figure_5/caregiver_ell_0_10_sim.R), [`caregiver_ell_0_12_sim.R`](codes/figure_5/caregiver_ell_0_12_sim.R), [`caregiver_ell_0_14_sim.R`](codes/figure_5/caregiver_ell_0_14_sim.R), [`caregiver_ell_0_16_sim.R`](codes/figure_5/caregiver_ell_0_16_sim.R), [`caregiver_ell_1_8_sim.R`](codes/figure_5/caregiver_ell_1_8_sim.R), [`caregiver_ell_1_10_sim.R`](codes/figure_5/caregiver_ell_1_10_sim.R), [`caregiver_ell_1_12_sim.R`](codes/figure_5/caregiver_ell_1_12_sim.R), [`caregiver_ell_1_14_sim.R`](codes/figure_5/caregiver_ell_1_14_sim.R), [`caregiver_ell_1_16_sim.R`](codes/figure_5/caregiver_ell_1_16_sim.R), and then run [`figure_5.R`](codes/figure_5/figure_5.R)
+  - performance of AIPW under different designs when $I = 40$, $J = 8, 10, 12, 14, 16$, $\ell = 0, 1$ in the mobile health study
+  - generate [`vary_J.pdf`](figures/figure_4/vary_J.pdf)
 
 #### Patient Cohort
 
