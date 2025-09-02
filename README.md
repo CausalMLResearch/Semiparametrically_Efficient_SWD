@@ -66,6 +66,12 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
  
 ### Simulation Study
 
+#### Base Case
+
+- Run [`figure_4a_r_high_ell_1_sim`](codes/figure_4/figure_4a_r_high_ell_1_sim.R) and then run [`generate_tables.R`](codes/figure_4/generate_tables.R)
+  - performance of AIPW, IPW, and OR under different designs when $I = 32$, $J = 10$, $\ell = 1$, $\tau_0^{\text{CTE}} = 1$ and $\tau^{\text{GATE}} = 2$
+  - generate [`table_1.tex`](tables/table_1.tex)
+
 ### Application to the Mobile Health Study
 
 ### Helper Functions
