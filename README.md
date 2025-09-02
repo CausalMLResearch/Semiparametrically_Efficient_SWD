@@ -5,6 +5,12 @@
 
 This repository contains the R code to reproduce the results presented in [Semiparametrically Efficient Stepped Wedge Designs](TBD).
 
+### Overview
+
+An illustration of various designs, including $\mathbf{Z}_{\text{ff}}$, $\mathbf{Z}_{\text{ba}}$, $\mathbf{Z}_{\text{ffba}}$, $\mathbf{Z}_{\text{linear}}$, and $\mathbf{Z}_{\text{efficient}}$.
+
+<img width="2239" height="631" alt="designs" src="https://github.com/user-attachments/assets/bc78d9fd-f133-49ac-b165-f910b78e2362" />
+
 ### Quickstart
 To reproduce the results, please download this repo on a machine with R, run each R script in the [`codes`](codes) directory without modification, and then the results are saved in [`figures`](figures), [`results`](results), and [`tables`](tables). All the R scripts can be run standalone. To run the R scripts, you do not need to set any pathnames; everything is relative. 
 
@@ -22,13 +28,17 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 ### Generate Illustrative Figures
 
+#### A Motivating Example
+
 - Run [`figure_1_sim.R`](codes/figure_1/figure_1_sim.R) and then run [`figure_1.py`](codes/figure_1/figure_1.py)
   - run a simulation for a simple two-period stepped wedge trial and compares two estimators: difference-in-means and AIPW
   - generate [`Figure 1`](figures/figure_1/2_period_mse.pdf)
 
-### Simulation Study
-
 #### Impact of Serial Correlations in Outcomes
+
+- Run [`figure_1_sim.R`](codes/figure_1/figure_1_sim.R) and then run [`figure_1.py`](codes/figure_1/figure_1.py)
+  - run a simulation for a simple two-period stepped wedge trial and compares two estimators: difference-in-means and AIPW
+  - generate [`Figure 1`](figures/figure_1/2_period_mse.pdf)
 
 #### Impact of Maximum Duration of Carryover Effects
 
