@@ -7,7 +7,7 @@ This repository contains the R code to reproduce the results presented in [Semip
 
 ### Overview
 
-An illustration of various designs, including $\mathbf{Z}_{\text{ff}}$, $\mathbf{Z}_{\text{ba}}$, $\mathbf{Z}_{\text{ffba}}$, $\mathbf{Z}_{\text{linear}}$, and $\mathbf{Z}_{\text{efficient}}$.
+An illustration of various designs, including ![Z_ff](https://latex.codecogs.com/svg.image?\mathbf{Z}_{\text{ff}}), ![Z_ba](https://latex.codecogs.com/svg.image?\mathbf{Z}_{\text{ba}}), ![Z_ffba](https://latex.codecogs.com/svg.image?\mathbf{Z}_{\text{ffba}}), ![Z_linear](https://latex.codecogs.com/svg.image?\mathbf{Z}_{\text{linear}}), and ![Z_efficient](https://latex.codecogs.com/svg.image?\mathbf{Z}_{\text{efficient}}).
 
 <img width="2239" height="631" alt="designs" src="https://github.com/user-attachments/assets/bc78d9fd-f133-49ac-b165-f910b78e2362" />
 
