@@ -3,7 +3,7 @@ library(ggplot2)
 library(RColorBrewer)
 library(gridExtra)
 library(grid)
-source("util_IRT_sim.R")
+source("util_empirical.R")
 
 j_values <- c(8, 10, 12, 14, 16)
 true_effect <- 2
