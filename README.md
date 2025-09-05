@@ -11,6 +11,8 @@ An illustration of various designs, including ![Z_ff](https://latex.codecogs.com
 
 <img width="2239" height="631" alt="designs" src="https://github.com/user-attachments/assets/bc78d9fd-f133-49ac-b165-f910b78e2362" />
 
+The purple indicates the treatment condition and the white indicates the control condition.
+
 ### Quickstart
 To reproduce the results, please download this repo on a machine with R, run each R script in the [`codes`](codes) directory without modification, and then the results are saved in [`figures`](figures), [`results`](results), and [`tables`](tables). All the R scripts can be run standalone. To run the R scripts, you do not need to set any pathnames; everything is relative. 
 
@@ -140,3 +142,15 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 ### Helper Functions
 The following scripts in [`codes`](codes) contain helper functions used throughout the analysis. These are automatically sourced by the main scripts - you don't need to run them separately:
+
+- ```util_IRT_sim.R```: helper functions for individually randomized trials when the target estimand is $\tau^{\text{GATE}}$
+
+- ```util_multiple_sim.R```: helper functions for individually randomized trials with multiple target estimands
+
+- ```util_empirical.R```: helper functions for the empirical analysis of the mobile health study by treating patients and caregivers seperately
+
+- ```util_para.R```: helper functions to calculate the correlation parameters using the historical control data in the mobile health study
+
+- ```util_empirical_cluster.R```: helper functions for the empirical analysis of the mobile health study by treating each dyad of a patient and a caregiver as a cluster
+
+- ```util_unequal.R```: helper functions for stepped wedge cluster randomized trials with unequal cluster sizes
