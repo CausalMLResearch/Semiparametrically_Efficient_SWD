@@ -47,7 +47,7 @@ p_r <- ggplot(combined_data, aes(x = type, y = r, fill = type)) +
   geom_boxplot(width = 0.4, position = position_dodge(width = 0.6)) +
   scale_y_continuous(limits = c(0.75, 1), expand = expansion(mult = c(0.02, 0.02))) +
   scale_fill_brewer(palette = "Dark2") +
-  labs(x = "", y = expression(italic(r))) +
+  labs(x = "", y = expression(paste(hat(italic(r))))) +
   theme_bw(base_family = "serif") +
   theme(
     panel.grid.minor = element_blank(),
@@ -63,7 +63,7 @@ p_sigma_gamma <- ggplot(combined_data, aes(x = type, y = sigma_epsilon_sq, fill 
   geom_boxplot(width = 0.4, position = position_dodge(width = 0.6)) +
   scale_y_continuous(limits = c(0.4, 1.4), expand = expansion(mult = c(0.02, 0.02))) +
   scale_fill_brewer(palette = "Dark2") +
-  labs(x = "", y = expression(sigma[gamma]^2)) +
+  labs(x = "", y = expression(paste(hat(σ)[γ]^2))) +
   theme_bw(base_family = "serif") +
   theme(
     panel.grid.minor = element_blank(),
@@ -79,7 +79,7 @@ p_sigma_epsilon <- ggplot(combined_data, aes(x = type, y = sigma_residual_sq, fi
   geom_boxplot(width = 0.4, position = position_dodge(width = 0.6)) +
   scale_y_continuous(limits = c(0., 0.5), expand = expansion(mult = c(0.02, 0.02))) +
   scale_fill_brewer(palette = "Dark2") +
-  labs(x = "", y = expression(sigma[epsilon]^2)) +
+  labs(x = "", y = expression(paste(hat(σ)[ε]^2))) +
   theme_bw(base_family = "serif") +
   theme(
     panel.grid.minor = element_blank(),
