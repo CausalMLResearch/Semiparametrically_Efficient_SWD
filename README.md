@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Shiny App](https://img.shields.io/badge/Shiny-Interactive%20App-blue)](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Efficient_SWD/)
 
-This repository contains the R code to reproduce the results presented in [Semiparametrically Efficient Stepped Wedge Designs](TBD).
+This repository contains the R code to reproduce the results presented in [Semiparametrically Efficient Stepped Wedge Designs](10.2139/ssrn.5515199).
 
 ### Overview
 
