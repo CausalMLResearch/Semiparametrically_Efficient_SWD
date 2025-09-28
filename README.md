@@ -122,6 +122,8 @@ Run our [`Shiny App`](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Ef
 
 ### Application to the Mobile Health Study
 
+This analysis uses data from the Roadmap 2.0 mobile health study, available at [Roadmap 2.0 Testbed](https://github.com/StatisticalReinforcementLearningLab/Roadmap2.0Testbed/tree/main).
+
 #### Correlation Parameters Estimation
 
 - Run [`patient_para_16.R`](codes/supp_figure_2/patient_para_16.R), [`caregiver_para_16.R`](codes/supp_figure_2/caregiver_para_16.R) and then run [`supp_figure_2.R`](codes/supp_figure_2/supp_figure_2.R)
