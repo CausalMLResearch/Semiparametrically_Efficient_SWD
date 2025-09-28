@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Shiny App](https://img.shields.io/badge/Shiny-Interactive%20App-blue)](https://f07k8s-hao-wang.shinyapps.io/Semiparametrically_Efficient_SWD/)
 
-This repository contains the R code to reproduce the results presented in [Semiparametrically Efficient Stepped Wedge Designs](10.2139/ssrn.5515199).
+This repository contains the R code to reproduce the results presented in [Semiparametrically Efficient Stepped Wedge Designs](http://dx.doi.org/10.2139/ssrn.5515199).
 
 ### Overview
 
@@ -154,3 +154,14 @@ The following scripts in [`codes`](codes) contain helper functions used througho
 - ```util_empirical_cluster.R```: helper functions for the empirical analysis of the mobile health study by treating each dyad of a patient and a caregiver as a cluster
 
 - ```util_unequal.R```: helper functions for stepped wedge cluster randomized trials with unequal cluster sizes
+
+### Reference
+
+```
+@article{Wang2025semiswd,
+  title={Semiparametrically Efficient Stepped Wedge Designs},
+  author={Hao Wang and Ruoxuan Xiong},
+  journal={SSRN preprint ssrn.5515199},
+  year={2025}
+}
+```
