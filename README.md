@@ -160,9 +160,8 @@ The following scripts in [`codes`](codes) contain helper functions used througho
 ```
 @article{Wang2025design,
   title = {Semiparametrically Efficient Stepped Wedge Designs},
-  url = {http://dx.doi.org/10.2139/ssrn.5515199},
   DOI = {10.2139/ssrn.5515199},
-  publisher = {Elsevier BV},
+  journal = {Available at SSRN 5515199},
   author = {Wang,  Hao and Xiong,  Ruoxuan},
   year = {2025}
 }
