@@ -162,7 +162,7 @@ The following scripts in [`codes`](codes) contain helper functions used througho
   title = {Semiparametrically Efficient Stepped Wedge Designs},
   DOI = {10.2139/ssrn.5515199},
   journal = {Available at SSRN 5515199},
-  author = {Wang,  Hao and Xiong,  Ruoxuan},
+  author = {Wang, Hao and Xiong, Ruoxuan},
   year = {2025}
 }
 ```
