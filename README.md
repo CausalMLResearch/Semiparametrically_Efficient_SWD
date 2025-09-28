@@ -158,10 +158,12 @@ The following scripts in [`codes`](codes) contain helper functions used througho
 ### Reference
 
 ```
-@article{Wang2025semiswd,
-  title={Semiparametrically Efficient Stepped Wedge Designs},
-  author={Hao Wang and Ruoxuan Xiong},
-  journal={SSRN preprint ssrn.5515199},
-  year={2025}
+@article{Wang2025design,
+  title = {Semiparametrically Efficient Stepped Wedge Designs},
+  url = {http://dx.doi.org/10.2139/ssrn.5515199},
+  DOI = {10.2139/ssrn.5515199},
+  publisher = {Elsevier BV},
+  author = {Wang,  Hao and Xiong,  Ruoxuan},
+  year = {2025}
 }
 ```
