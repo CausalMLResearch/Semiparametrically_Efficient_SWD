@@ -224,28 +224,40 @@ simulate_synthetic_panel <- function(df,
 
 outcome_regression_gate <- function(data) {
   
-  # extract max exposure time from data attributes
-  max_exposure_time <- attr(data, "parameters")$max_exposure_time
+  params            <- attr(data, "parameters")
+  max_exposure_time <- params$max_exposure_time
+  ell               <- max_exposure_time - 1
+  J                 <- params$J
+  I                 <- params$I
   
-  # fit the outcome regression model
   model <- lm(out_cont_1 ~ time_on_trt + time, data = data)
   
-  data_treated <- data
-  data_treated$time_on_trt <- factor(max_exposure_time, levels = levels(data$time_on_trt))
-  data_control <- data
-  data_control$time_on_trt <- factor(0, levels = levels(data$time_on_trt))
+  data_trt_scenario <- data %>%
+    mutate(time_on_trt = factor(max_exposure_time, levels = levels(data$time_on_trt)))
+  data_ctrl_scenario <- data %>%
+    mutate(time_on_trt = factor(0, levels = levels(data$time_on_trt)))
+  data$mu_1 <- predict(model, newdata = data_trt_scenario)
+  data$mu_0 <- predict(model, newdata = data_ctrl_scenario)
   
-  pred_treated <- predict(model, newdata = data_treated)
-  pred_control <- predict(model, newdata = data_control)
+  data <- data %>%
+    mutate(time_numeric = as.numeric(as.character(time)))
   
-  gate_estimate <- mean((pred_treated - pred_control))
+  tau_j <- numeric(J - ell)
+  for (idx in seq_len(J - ell)) {
+    j <- ell + idx
+    data_j <- data %>% filter(time_numeric == j)
+    tau_j[idx] <- mean(data_j$mu_1 - data_j$mu_0)
+  }
+  
+  gate_estimate <- mean(tau_j)
   
   result <- list(
-    estimate = gate_estimate,
-    model = model,
-    method = "outcome_regression",
+    estimate          = gate_estimate,
+    model             = model,
+    method            = "outcome_regression",
     max_exposure_time = max_exposure_time,
-    all_coef = coef(model)
+    ell               = ell,
+    all_coef          = coef(model)
   )
   
   class(result) <- c("gate_estimate", "list")
@@ -254,57 +266,45 @@ outcome_regression_gate <- function(data) {
 
 ipw_gate <- function(data) {
   
-  max_exposure_time <- attr(data, "parameters")$max_exposure_time
-  ell <- max_exposure_time - 1
-  J <- attr(data, "parameters")$J
-  I <- attr(data, "parameters")$I
-  design_matrix <- attr(data, "design_matrix")
+  params            <- attr(data, "parameters")
+  max_exposure_time <- params$max_exposure_time
+  ell               <- max_exposure_time - 1
+  J                 <- params$J
+  I                 <- params$I
+  design_matrix     <- attr(data, "design_matrix")
   
   prop_scores <- colMeans(design_matrix)
   
   data <- data %>%
-    mutate(time_numeric = as.numeric(as.character(time)),
-           prop_score = prop_scores[time_numeric])
+    mutate(time_numeric = as.numeric(as.character(time)))
   
-  ipw_sum_treated <- 0
-  ipw_sum_control <- 0
-  denom_treated <- 0
-  denom_control <- 0
-  
-  for (j in (ell+1):J) {
+  tau_j <- numeric(J - ell)
+  for (idx in seq_len(J - ell)) {
+    j <- ell + idx
     data_j <- data %>% filter(time_numeric == j)
     
-    treated_units <- data_j %>% 
-      filter(time_on_trt == max_exposure_time)
+    pi_trt  <- prop_scores[j - ell]
+    pi_ctrl <- 1 - prop_scores[j]
     
-    if (nrow(treated_units) > 0) {
-      pi_j_minus_ell <- prop_scores[j - ell]
-      ipw_sum_treated <- ipw_sum_treated + sum(treated_units$out_cont_1 / pi_j_minus_ell)
-      denom_treated <- denom_treated + nrow(treated_units) / pi_j_minus_ell
-    }
+    I_trt  <- as.numeric(data_j$time_on_trt == max_exposure_time)
+    I_ctrl <- as.numeric(data_j$trt == 0)
+    
+    trt_term  <- ifelse(I_trt  == 1, data_j$out_cont_1 / pi_trt,  0)
+    ctrl_term <- ifelse(I_ctrl == 1, data_j$out_cont_1 / pi_ctrl, 0)
+    
+    summand <- trt_term - ctrl_term
+    
+    tau_j[idx] <- mean(summand)
   }
   
-  for (j in 1:J) {
-    data_j <- data %>% filter(time_numeric == j)
-    
-    control_units <- data_j %>% 
-      filter(trt == 0)
-    
-    if (nrow(control_units) > 0) {
-      pi_j <- prop_scores[j]
-      ipw_sum_control <- ipw_sum_control + sum(control_units$out_cont_1 / (1 - pi_j))
-      denom_control <- denom_control + nrow(control_units) / (1 - pi_j)
-    }
-  }
-  
-  gate_estimate <- ipw_sum_treated / denom_treated - ipw_sum_control / denom_control
+  gate_estimate <- mean(tau_j)
   
   result <- list(
-    estimate = gate_estimate,
-    method = "ipw",
+    estimate          = gate_estimate,
+    method            = "ipw",
     max_exposure_time = max_exposure_time,
-    ell = ell,
-    prop_scores = prop_scores
+    ell               = ell,
+    prop_scores       = prop_scores
   )
   
   class(result) <- c("gate_estimate", "list")
@@ -313,80 +313,60 @@ ipw_gate <- function(data) {
 
 aipw_gate <- function(data) {
   
-  max_exposure_time <- attr(data, "parameters")$max_exposure_time
-  ell <- max_exposure_time - 1
-  J <- attr(data, "parameters")$J
-  I <- attr(data, "parameters")$I
-  design_matrix <- attr(data, "design_matrix")
+  params            <- attr(data, "parameters")
+  max_exposure_time <- params$max_exposure_time
+  ell               <- max_exposure_time - 1
+  J                 <- params$J
+  I                 <- params$I
+  design_matrix     <- attr(data, "design_matrix")
   
-  # estimated propensity scores
   prop_scores <- colMeans(design_matrix)
   
-  data <- data %>%
-    mutate(time_numeric = as.numeric(as.character(time)),
-           prop_score = prop_scores[time_numeric])
-  
-  # outcome regression model
   outcome_model <- lm(out_cont_1 ~ time_on_trt + time, data = data)
   
-  # for treated: predict with time_on_trt = max_exposure_time
-  data_treated_scenario <- data %>%
+  data_trt_scenario <- data %>%
     mutate(time_on_trt = factor(max_exposure_time, levels = levels(data$time_on_trt)))
-  data$pred_treated <- predict(outcome_model, newdata = data_treated_scenario)
-  
-  # for control: predict with time_on_trt = 0
-  data_control_scenario <- data %>%
+  data_ctrl_scenario <- data %>%
     mutate(time_on_trt = factor(0, levels = levels(data$time_on_trt)))
-  data$pred_control <- predict(outcome_model, newdata = data_control_scenario)
+  data$mu_1 <- predict(outcome_model, newdata = data_trt_scenario)
+  data$mu_0 <- predict(outcome_model, newdata = data_ctrl_scenario)
   
-  # AIPW components
-  aipw_sum_treated <- 0
-  aipw_sum_control <- 0
-  denom_treated <- 0
-  denom_control <- 0
+  data <- data %>%
+    mutate(time_numeric = as.numeric(as.character(time)))
   
-  # treated component
-  for (j in (ell+1):J) {
+  tau_j <- numeric(J - ell)
+  for (idx in seq_len(J - ell)) {
+    j <- ell + idx
     data_j <- data %>% filter(time_numeric == j)
     
-    # units with exposure time = max_exposure_time at time j
-    treated_units <- data_j %>% 
-      filter(time_on_trt == max_exposure_time)
+    pi_trt  <- prop_scores[j - ell]
+    pi_ctrl <- 1 - prop_scores[j]
     
-    if (nrow(treated_units) > 0) {
-      pi_j_minus_ell <- prop_scores[j - ell]
-      
-      # weighted residual
-      aipw_sum_treated <- aipw_sum_treated + sum((treated_units$out_cont_1 - treated_units$pred_treated) / pi_j_minus_ell)
-      denom_treated <- denom_treated + nrow(treated_units) / pi_j_minus_ell
-    }
+    I_trt  <- as.numeric(data_j$time_on_trt == max_exposure_time)
+    I_ctrl <- as.numeric(data_j$trt == 0)
+    
+    trt_correction  <- ifelse(I_trt  == 1,
+                              (data_j$out_cont_1 - data_j$mu_1) / pi_trt,
+                              0)
+    ctrl_correction <- ifelse(I_ctrl == 1,
+                              (data_j$out_cont_1 - data_j$mu_0) / pi_ctrl,
+                              0)
+    
+    summand <- data_j$mu_1 + trt_correction -
+      data_j$mu_0 - ctrl_correction
+    
+    tau_j[idx] <- mean(summand) 
   }
   
-  # control component
-  for (j in 1:J) {
-    data_j <- data %>% filter(time_numeric == j)
-    
-    control_units <- data_j %>% 
-      filter(trt == 0)
-    
-    if (nrow(control_units) > 0) {
-      pi_j <- prop_scores[j]
-      
-      # weighted residual
-      aipw_sum_control <- aipw_sum_control + sum((control_units$out_cont_1 - control_units$pred_control) / (1 - pi_j))
-      denom_control <- denom_control + nrow(control_units) / (1 - pi_j)
-    }
-  }
-  
-  gate_estimate <- mean((data$pred_treated - data$pred_control)) + aipw_sum_treated / denom_treated - aipw_sum_control / denom_control
+  gate_estimate <- mean(tau_j)
   
   result <- list(
-    estimate = gate_estimate,
-    outcome_model = outcome_model,
-    method = "aipw",
+    estimate          = gate_estimate,
+    outcome_model     = outcome_model,
+    method            = "aipw",
     max_exposure_time = max_exposure_time,
-    ell = ell,
-    prop_scores = prop_scores
+    ell               = ell,
+    prop_scores       = prop_scores
   )
   
   class(result) <- c("gate_estimate", "list")

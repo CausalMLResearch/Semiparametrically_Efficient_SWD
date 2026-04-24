@@ -202,132 +202,74 @@ simulate_panel_data <- function(I = 100,
 
 aipw_gate <- function(data) {
   
-  max_exposure_time <- attr(data, "parameters")$max_exposure_time
-  ell <- max_exposure_time - 1
-  J <- attr(data, "parameters")$J
-  I <- attr(data, "parameters")$I
-  design_matrix <- attr(data, "design_matrix")
-  
-  # fit outcome regression model
-  outcome_model <- lm(out_cont_1 ~ time_on_trt + time + cluster_size, 
+  params            <- attr(data, "parameters")
+  max_exposure_time <- params$max_exposure_time
+  ell               <- max_exposure_time - 1
+  J                 <- params$J
+
+  outcome_model <- lm(out_cont_1 ~ time_on_trt + time + cluster_size,
                       data = data, weights = omega_ijk)
-  
-  # predictions
-  data_treated_scenario <- data %>%
+
+  data_trt_scenario <- data %>%
     mutate(time_on_trt = factor(max_exposure_time, levels = levels(data$time_on_trt)))
-  data$pred_treated <- predict(outcome_model, newdata = data_treated_scenario)
-  
-  data_control_scenario <- data %>%
+  data_ctrl_scenario <- data %>%
     mutate(time_on_trt = factor(0, levels = levels(data$time_on_trt)))
-  data$pred_control <- predict(outcome_model, newdata = data_control_scenario)
-  
-  # cluster-period aggregations
-  cluster_period_avg <- data %>%
+  data$mu_1 <- predict(outcome_model, newdata = data_trt_scenario)
+  data$mu_0 <- predict(outcome_model, newdata = data_ctrl_scenario)
+
+  cp <- data %>%
     group_by(id_unit, time) %>%
     summarise(
-      y_bar_ij = sum(omega_ijk * out_cont_1) / sum(omega_ijk),
-      pred_treated_bar_ij = sum(omega_ijk * pred_treated) / sum(omega_ijk),
-      pred_control_bar_ij = sum(omega_ijk * pred_control) / sum(omega_ijk),
-      omega_ij = first(omega_ij),
-      omega_j = first(omega_j),
-      trt = first(trt),
+      Ybar_ij     = sum(omega_ijk * out_cont_1) / sum(omega_ijk),
+      mu_1_ij     = sum(omega_ijk * mu_1)       / sum(omega_ijk),
+      mu_0_ij     = sum(omega_ijk * mu_0)       / sum(omega_ijk),
+      omega_ij    = first(omega_ij),
+      omega_j     = first(omega_j),
+      trt         = first(trt),
       time_on_trt = first(time_on_trt),
-      .groups = 'drop'
+      .groups = "drop"
     ) %>%
     mutate(time_numeric = as.numeric(as.character(time)))
+
+  tau_j     <- numeric(J - ell)
+  omega_j_v <- numeric(J - ell)
   
-  # outcome regression component - treated
-  or_treated_num <- 0
-  or_treated_den <- 0
-  
-  for (j in 1:J) {
-    data_j <- cluster_period_avg %>% 
-      filter(time_numeric == j)
+  for (idx in seq_len(J - ell)) {
+    j <- ell + idx
+    cp_j <- cp %>% filter(time_numeric == j)
     
-    if (nrow(data_j) > 0) {
-      omega_j_val <- data_j$omega_j[1]
-      pred_treated_j <- sum(data_j$omega_ij * data_j$pred_treated_bar_ij) / sum(data_j$omega_ij)
-      
-      or_treated_num <- or_treated_num + pred_treated_j * omega_j_val
-      or_treated_den <- or_treated_den + omega_j_val
-    }
+    omega_j_val <- cp_j$omega_j[1]
+    
+    I_trt  <- as.numeric(cp_j$time_on_trt == max_exposure_time)
+    I_ctrl <- as.numeric(cp_j$trt == 0)
+
+    pi_trt  <- sum(cp_j$omega_ij * I_trt)
+    pi_ctrl <- sum(cp_j$omega_ij * I_ctrl)
+
+    or_trt  <- sum(cp_j$omega_ij * cp_j$mu_1_ij) / omega_j_val
+    aug_trt <- if (pi_trt  > 0) {
+      sum(cp_j$omega_ij * I_trt  * (cp_j$Ybar_ij - cp_j$mu_1_ij)) / pi_trt
+    } else 0
+
+    or_ctrl  <- sum(cp_j$omega_ij * cp_j$mu_0_ij) / omega_j_val
+    aug_ctrl <- if (pi_ctrl > 0) {
+      sum(cp_j$omega_ij * I_ctrl * (cp_j$Ybar_ij - cp_j$mu_0_ij)) / pi_ctrl
+    } else 0
+    
+    tau_j[idx]     <- (or_trt + aug_trt) - (or_ctrl + aug_ctrl)
+    omega_j_v[idx] <- omega_j_val
   }
-  
-  # outcome regression component - control
-  or_control_num <- 0
-  or_control_den <- 0
-  
-  for (j in 1:J) {
-    data_j <- cluster_period_avg %>% 
-      filter(time_numeric == j)
-    
-    if (nrow(data_j) > 0) {
-      omega_j_val <- data_j$omega_j[1]
-      pred_control_j <- sum(data_j$omega_ij * data_j$pred_control_bar_ij) / sum(data_j$omega_ij)
-      
-      or_control_num <- or_control_num + pred_control_j * omega_j_val
-      or_control_den <- or_control_den + omega_j_val
-    }
-  }
-  
-  or_estimate <- (or_treated_num / or_treated_den) - (or_control_num / or_control_den)
-  
-  # augmentation terms for treated units
-  aug_treated_num <- 0
-  aug_treated_den <- 0
-  
-  for (j in (ell+1):J) {
-    data_j <- cluster_period_avg %>% 
-      filter(time_numeric == j)
-    
-    treated_units <- data_j %>% 
-      filter(time_on_trt == max_exposure_time)
-    
-    if (nrow(treated_units) > 0) {
-      omega_j_val <- treated_units$omega_j[1]
-      residuals <- treated_units$y_bar_ij - treated_units$pred_treated_bar_ij
-      
-      aug_treated_num <- aug_treated_num + 
-        sum(treated_units$omega_ij * residuals) * omega_j_val / sum(treated_units$omega_ij)
-      aug_treated_den <- aug_treated_den + omega_j_val
-    }
-  }
-  
-  # augmentation terms for control units
-  aug_control_num <- 0
-  aug_control_den <- 0
-  
-  for (j in 1:J) {
-    data_j <- cluster_period_avg %>% 
-      filter(time_numeric == j)
-    
-    control_units <- data_j %>% 
-      filter(trt == 0)
-    
-    if (nrow(control_units) > 0) {
-      omega_j_val <- control_units$omega_j[1]
-      residuals <- control_units$y_bar_ij - control_units$pred_control_bar_ij
-      
-      aug_control_num <- aug_control_num + 
-        sum(control_units$omega_ij * residuals) * omega_j_val / sum(control_units$omega_ij)
-      aug_control_den <- aug_control_den + omega_j_val
-    }
-  }
-  
-  # AIPW estimate
-  gate_estimate <- or_estimate + 
-    (aug_treated_num / aug_treated_den) - 
-    (aug_control_num / aug_control_den)
+
+  gate_estimate <- sum(omega_j_v * tau_j) / sum(omega_j_v)
   
   result <- list(
-    estimate = gate_estimate,
-    outcome_model = outcome_model,
-    method = "aipw",
+    estimate          = gate_estimate,
+    tau_j             = tau_j,
+    omega_j           = omega_j_v,
+    outcome_model     = outcome_model,
+    method            = "aipw",
     max_exposure_time = max_exposure_time,
-    ell = ell,
-    or_component = or_estimate,
-    aug_treated = aug_treated_num / aug_treated_den,
-    aug_control = aug_control_num / aug_control_den
+    ell               = ell
   )
   
   class(result) <- c("gate_estimate", "list")
