@@ -44,7 +44,7 @@ make_plot <- function(pi, title_expr) {
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank(),
           plot.title = element_text(hjust = 0.5, size = 16, family = "serif"),
-          axis.text.x = element_text(size = 12, family = "serif"),
+          axis.text.x = element_text(size = 22, family = "serif"),
           panel.grid.minor = element_blank(),
           plot.margin = margin(10, 10, 10, 10),
           aspect.ratio = 1)

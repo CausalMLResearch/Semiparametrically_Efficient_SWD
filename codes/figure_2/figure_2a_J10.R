@@ -72,12 +72,12 @@ p <- ggplot(results, aes(x = j, y = pi_j, color = r, group = r)) +
     legend.position = c(0.02, 0.98),
     legend.justification = c(0, 1),
     legend.background = element_rect(fill = "white", color = "black", size = 0.3),
-    legend.title = element_text(size = 14, family = "serif"),
-    legend.text = element_text(size = 14, family = "serif"),
+    legend.title = element_text(size = 22, family = "serif"),
+    legend.text = element_text(size = 22, family = "serif"),
     
-    axis.title.x = element_text(size = 20, family = "serif"),
-    axis.title.y = element_text(size = 20, angle = 0, vjust = 0.5, family = "serif"),  # Larger y-axis label
-    axis.text = element_text(size = 16, color = "black", family = "serif"),
+    axis.title.x = element_text(size = 28, family = "serif"),
+    axis.title.y = element_text(size = 28, angle = 0, vjust = 0.5, family = "serif"),
+    axis.text = element_text(size = 22, color = "black", family = "serif"),
     
     panel.grid.minor = element_blank()
   )

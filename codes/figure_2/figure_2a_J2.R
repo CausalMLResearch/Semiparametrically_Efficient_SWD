@@ -42,50 +42,44 @@ minimize_variance_bound_nloptr <- function(J, ell, r) {
 J <- 2
 ell <- 0
 
-r_seq <- seq(0, 1, length.out = 100)
+r_values <- c(0, 0.3, 0.6, 0.9)
 results <- data.frame()
 
-for (r_val in r_seq) {
-  opt <- minimize_variance_bound_nloptr(J, ell, r_val)
+for (r in r_values) {
+  res <- minimize_variance_bound_nloptr(J, ell, r)
   df <- data.frame(
-    r = r_val,
-    pi_1 = opt$pi[1],
-    pi_2 = opt$pi[2]
+    j = 1:J,
+    pi_j = res$pi,
+    r = as.factor(r)
   )
   results <- rbind(results, df)
 }
 
-results_long <- data.frame(
-  r = rep(results$r, 2),
-  pi_value = c(results$pi_1, results$pi_2),
-  pi_type = factor(rep(c("pi1", "pi2"), each = nrow(results)), 
-                   levels = c("pi1", "pi2"))
-)
-
-p <- ggplot(results_long, aes(x = r, y = pi_value, color = pi_type, group = pi_type)) +
+p <- ggplot(results, aes(x = j, y = pi_j, color = r, group = r)) +
   geom_line(size = 1) +
-  scale_x_continuous(breaks = seq(0, 1, 0.2), limits = c(0, 1)) +
+  geom_point(size = 1.5) +
+  scale_x_continuous(breaks = 1:J) +
   scale_y_continuous(breaks = seq(0, 1, 0.1), limits = c(0, 1)) +
   scale_color_rss_d(palette = "signif_qual", 
                     name = NULL,
-                    direction = -1,
-                    labels = c(expression(pi[1]), expression(pi[2]))) +
-  labs(x = expression("Decay Rate "* r), 
-       y = "Treated Fraction") +
-  theme_bw(base_size = 15) +
+                    labels = c("r = 0.0", "r = 0.3", "r = 0.6", "r = 0.9")) +
+  labs(x = expression("Period "* j), 
+       y = expression(pi[j])) +
+  theme_bw(base_size = 17) +
   theme(
-
     text = element_text(family = "serif"),
+    
+    plot.title = element_text(size = 22, family = "serif", hjust = 0.5),
     
     legend.position = c(0.02, 0.98),
     legend.justification = c(0, 1),
     legend.background = element_rect(fill = "white", color = "black", size = 0.3),
-    legend.title = element_text(size = 14, family = "serif"),  # legend title size 14
-    legend.text = element_text(size = 14, family = "serif"),   # legend text size 14
+    legend.title = element_text(size = 22, family = "serif"),
+    legend.text = element_text(size = 22, family = "serif"),
     
-    axis.title.x = element_text(size = 20, family = "serif"),  # larger x-axis label
-    axis.title.y = element_text(size = 20, vjust = 0.5, family = "serif"),  # larger y-axis label
-    axis.text = element_text(size = 16, color = "black", family = "serif"),
+    axis.title.x = element_text(size = 28, family = "serif"),
+    axis.title.y = element_text(size = 28, angle = 0, vjust = 0.5, family = "serif"),
+    axis.text = element_text(size = 22, color = "black", family = "serif"),
     
     panel.grid.minor = element_blank()
   )
